@@ -1,13 +1,14 @@
-import { Telegraf } from 'Telegraf';
+import { Telegraf, Context } from 'Telegraf';
 import * as dotenv from 'dotenv';
 import { CommandService } from './services/command-service';
 import { green, red } from 'chalk';
 dotenv.config();
 
-const bot: Telegraf = new Telegraf(process.env.BOT_TOKEN || '');
+const bot = new Telegraf<Context>(process.env.BOT_TOKEN || '');
 const commandService: CommandService = new CommandService();
 
-bot.start(commandService.start);
+bot.start(commandService.start.bind(commandService));
+bot.command('cancel', commandService.cancel.bind(commandService));
 
 bot.launch().then(
   () => console.log(green('@balaboba_ua_bot successfully launched')),
