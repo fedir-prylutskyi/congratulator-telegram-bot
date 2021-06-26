@@ -8,12 +8,12 @@
     "build": "tsc",
     "prestart": "npm run build",
     "start": "node .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "pretty-quick": "pretty-quick --staged"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged",
-      "pre-push": "npm run lint"
+      "pre-commit": "pretty-quick"
     }
   },
   "repository": {
