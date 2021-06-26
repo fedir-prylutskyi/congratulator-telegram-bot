@@ -2,7 +2,7 @@ import express from "express";
 const app = express();
 import * as dotenv from 'dotenv';
 import { green } from "chalk";
-import { bot } from '../bot/bot';
+import { bot } from "../bot/bot";
 dotenv.config();
 
 app.get('/', (req, res) => res.send('Hello World!'));
