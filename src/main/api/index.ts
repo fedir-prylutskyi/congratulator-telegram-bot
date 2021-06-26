@@ -1,4 +1,4 @@
-import express from 'express';
+import express from "express";
 const app = express();
 import * as dotenv from 'dotenv';
 import { green } from "chalk";
