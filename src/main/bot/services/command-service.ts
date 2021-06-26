@@ -1,5 +1,6 @@
 import { Context } from 'telegraf';
 import { DatabaseService } from './database-service';
+import { red } from 'chalk';
 
 export class CommandService {
   private databaseService: DatabaseService;
@@ -10,7 +11,7 @@ export class CommandService {
   start(ctx: Context): void {
     ctx.reply('hello from bot').then(
       (message) => console.log(message.chat),
-      (error) => console.log(error)
+      (error) => console.log(red(error))
     );
   }
 }
