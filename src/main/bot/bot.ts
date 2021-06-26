@@ -1,34 +1,20 @@
 import { Telegraf } from 'Telegraf';
 import * as dotenv from 'dotenv';
-import { RequestHandler } from 'express';
-import { CommandService } from "./services/command-service";
+import { CommandService } from './services/command-service';
+import { green } from 'chalk';
 dotenv.config();
 
-export class Bot {
-  private bot: Telegraf = new Telegraf(process.env.BOT_TOKEN || '');
+const bot: Telegraf = new Telegraf(process.env.BOT_TOKEN || '');
+const commandService: CommandService = new CommandService();
 
-  constructor(private commandService: CommandService) {
-    this.onInit();
-  }
+bot.start(commandService.start);
 
-  private onInit(): void {
-    // this.bot.telegram.setWebhook('http://localhost:5000/telegram')
-    //   .then(r => console.log(r),
-    //     e => console.log(e));
+bot.launch().then(
+  () => console.log(green('@balaboba_ua_bot successfully launched')),
+  (error) => console.log(error)
+);
 
-    this.bot.start(this.commandService.start);
+process.once('SIGINT', () => bot.stop('SIGINT'));
+process.once('SIGTERM', () => bot.stop('SIGTERM'));
 
-    this.bot.launch()
-      .then(() => console.log('@balaboba_ua_bot successfully launched'),
-        error => console.log(error));
-
-    process.once('SIGINT', () => this.bot.stop('SIGINT'));
-    process.once('SIGTERM', () => this.bot.stop('SIGTERM'));
-  }
-
-  webhookCallback(url: string): RequestHandler {
-    return this.bot.webhookCallback(url);
-  }
-}
-
-const bot = new Bot(CommandService.prototype);
+export { bot };
