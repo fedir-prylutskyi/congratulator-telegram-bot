@@ -1,0 +1,23 @@
+{
+  "name": "telegram-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/main/api/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fedir-prylutskyi/congratulator-telegram-bot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fedir-prylutskyi/congratulator-telegram-bot/issues"
+  },
+  "homepage": "https://github.com/fedir-prylutskyi/congratulator-telegram-bot#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
