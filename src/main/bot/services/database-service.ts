@@ -31,8 +31,7 @@ export class DatabaseService {
 
   async saveChat(chatData: Chat): Promise<Chat> {
     const chat = new ChatModel(chatData);
-    await chat.save();
-    return chatData;
+    return chat.save();
   }
 
   async deleteChat(chat: Chat): Promise<Chat> {
