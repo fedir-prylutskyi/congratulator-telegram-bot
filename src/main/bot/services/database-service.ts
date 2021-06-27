@@ -1,6 +1,8 @@
 import { connect, connection } from 'mongoose';
 import { green, yellow, red } from 'chalk';
 import * as dotenv from 'dotenv';
+import { Chat } from '../interfaces/chat-interface';
+import { ChatModel } from '../models/chat-model';
 dotenv.config();
 
 export class DatabaseService {
@@ -25,5 +27,14 @@ export class DatabaseService {
     connection.on('disconnected', () =>
       console.log(yellow('Mongoose default connection is disconnected'))
     );
+  }
+
+  async saveChat(chatData: Chat): Promise<Chat> {
+    const chat = new ChatModel(chatData);
+    return chat.save();
+  }
+
+  async deleteChat(chat: Chat): Promise<Chat> {
+    return ChatModel.findOneAndDelete({ id: chat.id });
   }
 }
